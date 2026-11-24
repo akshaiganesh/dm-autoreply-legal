@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Privacy Policy — DM AutoReply</title>
+<meta name="description" content="How DM AutoReply handles Instagram direct message data.">
+<meta name="robots" content="index,follow">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <a class="brand" href="/">DM AutoReply <span>· Legal</span></a>
+    <nav>
+      <a href="/privacy/" aria-current="page">Privacy</a>
+      <a href="/terms/">Terms</a>
+      <a href="/data-deletion/">Data Deletion</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<div class="wrap">
+
+<h1>Privacy Policy</h1>
+<p class="meta">Last updated: 24 November 2026</p>
+
+<p class="lede">DM AutoReply is a private automation tool that receives Instagram direct messages on behalf of a single Instagram professional account and responds to them automatically. This policy explains, in plain terms, what data the tool actually handles.</p>
+
+<div class="note draft">
+  <strong>Draft for review</strong>
+  <p>This is a working draft prepared from the tool's current implementation. It has not been reviewed by a lawyer. See the review list at the end of this page.</p>
+</div>
+
+<h2>1. Who we are</h2>
+<p>DM AutoReply is a personal, non-commercial software project operated by an individual (referred to here as “we”, “us”, “our”). It is not a company and does not offer its services commercially to the public.</p>
+<p>For any privacy question or request, contact: <a href="mailto:akshaiganesh.pie@gmail.com">akshaiganesh.pie@gmail.com</a></p>
+
+<h2>2. What this tool does</h2>
+<p>When someone sends a direct message to the connected Instagram professional account, Meta (Instagram's parent company) sends a notification to our webhook — a private HTTPS endpoint. Our automation receives that notification, checks its cryptographic signature to confirm it genuinely came from Meta, and decides whether to send an automatic reply.</p>
+<p>The tool has a deliberately narrow feature set. It does <strong>not</strong> include any user-facing dashboard, account creation, advertising, analytics, profiling, or third-party data sharing.</p>
+
+<h2>3. What data we receive</h2>
+<p>We receive only what Meta includes in the webhook notification for a direct message. Based on the current implementation, this is:</p>
+
+<table>
+<thead><tr><th>Data</th><th>Source</th><th>Purpose</th></tr></thead>
+<tbody>
+<tr><td data-l="Data">The Instagram-scoped ID of the person who messaged</td><td data-l="Source">Meta webhook</td><td data-l="Purpose">To address a reply to the correct conversation</td></tr>
+<tr><td data-l="Data">The Instagram-scoped ID of the connected account</td><td data-l="Source">Meta webhook</td><td data-l="Purpose">To confirm the message belongs to the connected account</td></tr>
+<tr><td data-l="Data">Message text and message ID</td><td data-l="Source">Meta webhook</td><td data-l="Purpose">To generate and match an automatic reply</td></tr>
+<tr><td data-l="Data">Message timestamp</td><td data-l="Source">Meta webhook</td><td data-l="Purpose">To process the message in order</td></tr>
+<tr><td data-l="Data">Technical request metadata (request headers, sender IP as relayed by Meta)</td><td data-l="Source">Webhook request</td><td data-l="Purpose">To verify the request signature and keep the service secure</td></tr>
+</tbody>
+</table>
+
+<p>We do not receive your name, email address, phone number, profile photo, follower list, contacts, location, or payment information from Meta. We do not access your Instagram profile beyond what is needed to reply to the message you sent.</p>
+
+<h2>4. Why we process it</h2>
+<ul>
+  <li><strong>To reply to your message.</strong> This is the core function of the tool.</li>
+  <li><strong>To keep the service secure.</strong> Request signatures are verified so that forged or spoofed webhook calls are rejected.</li>
+  <li><strong>To diagnose faults.</strong> When something breaks, we inspect executed requests internally to find the cause.</li>
+</ul>
+<p>We do not use message content for advertising, profiling, training machine-learning models, or any purpose other than replying to you.</p>
+
+<h2>5. Where data goes</h2>
+<p>Message data travels from Meta to our own self-hosted automation system, which runs on private infrastructure controlled by us. In the current implementation, message data is <strong>not sold, rented, or shared with third parties</strong>, and is not sent to advertising networks or data brokers.</p>
+<p>Two categories of third-party infrastructure are unavoidable in delivering this service:</p>
+<ul>
+  <li><strong>Meta / Instagram</strong> — the origin of the messages, governed by Meta's own privacy terms.</li>
+  <li><strong>Cloudflare</strong> — our domain's DNS, TLS, and network-proxy provider, which routes HTTPS traffic to our server and therefore processes requests in transit.</li>
+</ul>
+
+<h2>6. Retention</h2>
+<p>This section honestly reflects how the system is currently configured rather than a promise about the future.</p>
+<ul>
+  <li><strong>Application data store.</strong> The automation platform stores execution records for incoming messages in its own database so that runs can be inspected and faults diagnosed. These are <strong>not automatically purged on a fixed schedule</strong> at present.</li>
+  <li><strong>Uploaded files.</strong> The tool does not currently store received media files.</li>
+  <li><strong>Logs.</strong> Routine operational logs and application logs are written on our server and are subject to ordinary disk management rather than a fixed retention period.</li>
+</ul>
+<p>Because there is no automatic expiry at present, we will delete stored message data on request (see section 9), and we intend to introduce a defined retention period. We are not claiming one exists today.</p>
+
+<h2>7. Security</h2>
+<p>The measures below are actually implemented. We are describing only these, not a general certification:</p>
+<ul>
+  <li>All webhook traffic is served over <strong>HTTPS</strong> with a valid TLS certificate.</li>
+  <li>Every incoming webhook request has its <strong>HMAC-SHA256 signature verified</strong> against the app secret, and requests that fail verification are rejected rather than processed.</li>
+  <li>The webhook endpoint is restricted so that only the expected webhook paths are reachable from the public internet; administrative interfaces are not exposed on that hostname.</li>
+  <li>Secrets and access credentials are stored in protected configuration files and a secret store, restricted to the operating-system account that runs the tool, and are never committed to source control.</li>
+</ul>
+<p>No system is perfectly secure. We cannot guarantee absolute security, and we do not claim any independent security certification, audit, or standard compliance.</p>
+
+<h2>8. Children</h2>
+<p>This tool is not directed at children and is not intended for use by children under 13. If you believe a child has sent a message that has been processed by this tool, contact us and we will delete the associated data.</p>
+
+<h2>9. Your choices and rights</h2>
+<p>You may contact us at <a href="mailto:akshaiganesh.pie@gmail.com">akshaiganesh.pie@gmail.com</a> to:</p>
+<ul>
+  <li>ask what data we hold relating to your messages;</li>
+  <li>request deletion of that data;</li>
+  <li>object to further processing, or ask us to stop replying to you.</li>
+</ul>
+<p>You can also stop interacting with the automation at any time simply by not messaging the connected account, and you can block the account through Instagram's own controls. To request deletion, see our <a href="/data-deletion/">Data Deletion</a> page.</p>
+
+<h2>10. Changes</h2>
+<p>If this policy changes, we will update the “last updated” date above. Because this is a small personal project, we do not send notifications of changes.</p>
+
+<hr>
+
+<h2>⚠ Questions for review before publishing</h2>
+<div class="note">
+<p><strong>No legal review has been performed.</strong> The operator is an adult individual and is able to act as the responsible legal contact. This draft has not been reviewed by a lawyer.</p>
+</div>
+<ul>
+  <li><strong>Contact email.</strong> The address used above must be real, monitored, and acceptable to publish. Replace it if a different address is preferred.</li>
+  <li><strong>Legal entity / operator name.</strong> Currently described generically as an individual. A named operator or trading name can be listed if preferred.</li>
+  <li><strong>Governing law and jurisdiction.</strong> Not stated, because it depends on where the operator resides. Should be confirmed.</li>
+  <li><strong>Retention period.</strong> Confirm whether to add an actual automatic deletion window to the system (which would let us state a real retention period) or keep the current honest “no fixed schedule” wording.</li>
+  <li><strong>Data-protection rights wording.</strong> The rights described are general, not tied to a specific jurisdiction such as GDPR or India's DPDP Act. Jurisdiction-appropriate language can be added if a specific jurisdiction applies.</li>
+</ul>
+
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 DM AutoReply</span>
+    <a href="/privacy/">Privacy</a>
+    <a href="/terms/">Terms</a>
+    <a href="/data-deletion/">Data Deletion</a>
+  </div>
+</footer>
+</body>
+</html>

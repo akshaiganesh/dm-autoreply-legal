@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Data Deletion Instructions — DM AutoReply</title>
+<meta name="description" content="How to request deletion of data held by the DM AutoReply Instagram automation.">
+<meta name="robots" content="index,follow">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <a class="brand" href="/">DM AutoReply <span>· Legal</span></a>
+    <nav>
+      <a href="/privacy/">Privacy</a>
+      <a href="/terms/">Terms</a>
+      <a href="/data-deletion/" aria-current="page">Data Deletion</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<div class="wrap">
+
+<h1>Data Deletion Instructions</h1>
+<p class="meta">Last updated: 24 November 2026</p>
+
+<p class="lede">You can ask us to delete the data we hold relating to your Instagram direct messages. This page explains exactly how.</p>
+
+<div class="note draft">
+  <strong>Draft for review</strong>
+  <p>Working draft based on the current implementation. See the review list at the end of this page before publishing.</p>
+</div>
+
+<h2>1. How to request deletion</h2>
+<p>Send an email to <a href="mailto:akshaiganesh.pie@gmail.com">akshaiganesh.pie@gmail.com</a> with the subject line <strong>“Data Deletion Request”</strong>.</p>
+<p>In the email, please include:</p>
+<ul>
+  <li>the Instagram username of the account you messaged from;</li>
+  <li>that you are requesting deletion of data relating to your direct messages;</li>
+  <li>optionally, approximately when you sent the message, to help us locate it.</li>
+</ul>
+<p>You do not need to send us a copy of your messages or any other personal documents.</p>
+
+<h2>2. What happens next</h2>
+<ol>
+  <li>We acknowledge your request by email.</li>
+  <li>We locate the stored records associated with your Instagram-scoped ID.</li>
+  <li>We delete those records from the application data store.</li>
+  <li>We confirm by email once deletion is complete.</li>
+</ol>
+<p>We aim to action requests promptly. Because this is a small personal project run by an individual, we cannot offer a guaranteed turnaround time, and we will tell you if a request will take longer than expected.</p>
+
+<h2>3. What deletion covers</h2>
+<ul>
+  <li>Stored automation execution records relating to messages from your account.</li>
+  <li>Any stored identifiers we hold for your account in that context.</li>
+  <li>Any automatic reply history we control within that store.</li>
+</ul>
+
+<h2>4. What deletion does not cover</h2>
+<p>Be aware of the limits, so there are no surprises:</p>
+<ul>
+  <li><strong>Messages inside Instagram.</strong> The conversation itself lives in Instagram/Meta's systems. We cannot delete messages from your Instagram inbox. You can delete the conversation or block the account through Instagram's own controls.</li>
+  <li><strong>Meta's own records.</strong> Meta processes webhook deliveries under its own policies. Requests about Meta's records must go to Meta.</li>
+  <li><strong>Cloudflare network logs.</strong> Our DNS/TLS/network provider processes requests in transit and retains its own logs under its policies.</li>
+  <li><strong>Backups and operational logs.</strong> Residual copies may persist in ordinary server logs or backups until they age out or are overwritten through normal operation.</li>
+</ul>
+
+<h2>5. Alternative: stop interacting</h2>
+<p>You do not have to request deletion to stop the automation. If you simply stop messaging the connected account, no new data is received. Blocking the account through Instagram's controls prevents further contact entirely.</p>
+
+<h2>6. Related</h2>
+<p>For a fuller description of what we receive and why, see our <a href="/privacy/">Privacy Policy</a> and <a href="/terms/">Terms of Service</a>.</p>
+
+<hr>
+
+<h2>⚠ Questions for review before publishing</h2>
+<div class="note">
+<p><strong>No legal review has been performed.</strong> The operator is an adult individual who monitors and actions these deletion requests personally.</p>
+</div>
+<ul>
+  <li><strong>Contact email.</strong> Must be real and actively monitored — a published deletion route that nobody reads is worse than none, and Meta reviewers may test it.</li>
+  <li><strong>Turnaround time.</strong> Deliberately vague. Confirm whether a specific commitment (e.g. 30 days) should be stated. Only promise it if it can actually be met.</li>
+  <li><strong>No automated deletion callback.</strong> This implementation does not expose Meta's optional <em>signed request / deletion status URL</em> endpoints. Meta's app dashboard may still ask for a “Data Deletion Callback URL” — if so, this page's manual email process should be declared as the method instead, and that needs deciding before submission.</li>
+  <li><strong>Deletion scope honesty.</strong> Section 4 states plainly that backups and logs may retain residual copies. That is accurate but some review processes expect a stronger claim. Decide whether to keep the honest wording.</li>
+</ul>
+
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 DM AutoReply</span>
+    <a href="/privacy/">Privacy</a>
+    <a href="/terms/">Terms</a>
+    <a href="/data-deletion/">Data Deletion</a>
+  </div>
+</footer>
+</body>
+</html>
